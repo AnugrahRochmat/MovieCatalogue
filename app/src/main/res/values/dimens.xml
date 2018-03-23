@@ -3,4 +3,6 @@
     <dimen name="margin_padding_16dp">16dp</dimen>
     <dimen name="btn_find_movies_dimension">50dp</dimen>
     <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="margin_padding_8dp">8dp</dimen>
+    <dimen name="card_corner_radius">5dp</dimen>
 </resources>

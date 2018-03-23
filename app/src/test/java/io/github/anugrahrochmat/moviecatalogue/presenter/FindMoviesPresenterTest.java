@@ -1,5 +1,7 @@
 package io.github.anugrahrochmat.moviecatalogue.presenter;
 
+import android.content.Context;
+
 import junit.framework.Assert;
 
 import org.junit.Test;
@@ -48,6 +50,11 @@ public class FindMoviesPresenterTest {
         boolean displayWithNoMovies;
 
         @Override
+        public Context getContext() {
+            return null;
+        }
+
+        @Override
         public void displayMovies(List<Movie> movieList) {
             if (movieList.size() == 3) displayWithMovies = true;
         }
@@ -55,6 +62,26 @@ public class FindMoviesPresenterTest {
         @Override
         public void displayNoMovies() {
             displayWithNoMovies = true;
+        }
+
+        @Override
+        public void onSearchQueryError(String msg) {
+
+        }
+
+        @Override
+        public void onShowProgress() {
+
+        }
+
+        @Override
+        public void onHideProgress() {
+
+        }
+
+        @Override
+        public void onErrorNoConnection() {
+
         }
     }
 

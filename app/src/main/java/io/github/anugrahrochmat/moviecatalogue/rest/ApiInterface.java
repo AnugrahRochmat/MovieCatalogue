@@ -8,6 +8,6 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
     @GET("search/movie")
-    Call<MoviesResponse> getFindMovies(@Query("api_key") String apiKey);
+    Call<MoviesResponse> getFindMovies(@Query("api_key") String apiKey, @Query("query") String query );
 
 }

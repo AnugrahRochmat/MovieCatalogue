@@ -2,5 +2,10 @@
     <string name="app_name">Movie Catalogue</string>
     <string name="find">Find</string>
     <string name="find_movie">Movie Name</string>
-    <string name="error_message">Cannot connect to the internet. Please check your internet connection.</string>
+    <string name="find_movie_empty">Insert Movie name here.</string>
+    <string name="error_no_connection">Cannot connect to the internet. Please check your internet connection.</string>
+    <string name="movie_released_date">Thursday, Mar 08, 2018</string>
+    <string name="movie_desc">Lara Croft, the fiercely independent daughter of a missing adventurer, must push herself beyond her limits when she finds herself on the island where her father disappeared.</string>
+    <string name="movie_name">Tomb Raider</string>
+    <string name="tmdb_image_url">http://image.tmdb.org/t/p/w342/</string>
 </resources>

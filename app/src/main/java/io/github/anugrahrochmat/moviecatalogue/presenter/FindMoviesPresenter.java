@@ -1,27 +1,48 @@
 package io.github.anugrahrochmat.moviecatalogue.presenter;
 
-import java.util.List;
+import android.text.TextUtils;
 
-import io.github.anugrahrochmat.moviecatalogue.model.Movie;
+import io.github.anugrahrochmat.moviecatalogue.R;
 import io.github.anugrahrochmat.moviecatalogue.repositories.MoviesRepository;
 import io.github.anugrahrochmat.moviecatalogue.view.FindMoviesView;
 
 public class FindMoviesPresenter {
 
-    private FindMoviesView view;
+    private FindMoviesView findMoviesView;
     private MoviesRepository moviesRepository;
 
-    public FindMoviesPresenter(FindMoviesView view, MoviesRepository moviesRepository) {
-        this.view = view;
+    public FindMoviesPresenter(FindMoviesView findMoviesView, MoviesRepository moviesRepository) {
+        this.findMoviesView = findMoviesView;
         this.moviesRepository = moviesRepository;
     }
 
-    public void loadMovies() {
-        List<Movie> movieList = moviesRepository.getMovies();
-        if (movieList.isEmpty()){
-            view.displayNoMovies();
+//    public void loadMovies() {
+//        List<Movie> movieList = moviesRepository.getMovies();
+//        if (movieList.isEmpty()){
+//            findMoviesView.onHideProgress();
+//            findMoviesView.displayNoMovies();
+//        } else {
+//            findMoviesView.onHideProgress();
+//            findMoviesView.displayMovies(movieList);
+//        }
+//    }
+
+    public void onSearchBtnClick(String query){
+        if (TextUtils.isEmpty(query)){
+            findMoviesView.onSearchQueryError(findMoviesView.getContext().getString(R.string.error_no_connection));
+            return;
         } else {
-            view.displayMovies(movieList);
+            findMoviesView.onSearchQueryError(null);
         }
+        // ASyncTask Execute
     }
+
+    public void onProcessStart(){
+        findMoviesView.onShowProgress();
+    }
+
+    public void onErrorConnection(){
+        findMoviesView.onErrorNoConnection();
+    }
+
 }

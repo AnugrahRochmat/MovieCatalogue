@@ -1,7 +1,5 @@
 package io.github.anugrahrochmat.moviecatalogue.model;
 
-import android.graphics.Movie;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
