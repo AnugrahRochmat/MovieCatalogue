@@ -10,9 +10,15 @@ public interface FindMoviesView {
 
     Context getContext();
 
+    void initializeRV();
+
     void displayMovies(List<Movie> movieList);
 
     void displayNoMovies();
+
+    void onFindBtnClicked();
+
+    void onHandleEditText();
 
     void onSearchQueryError(String msg);
 
@@ -20,5 +26,8 @@ public interface FindMoviesView {
 
     void onHideProgress();
 
-    void onErrorNoConnection();
+    void onShowError(String msg);
+
+    void onHideError();
+
 }

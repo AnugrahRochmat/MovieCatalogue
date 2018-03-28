@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -56,9 +59,7 @@ public class FindMoviesAdapter extends RecyclerView.Adapter<FindMoviesAdapter.Fi
         holder.tvMovieDesc.setText(movie.getOverview());
         Picasso.with(context).load(context.getResources().getString(R.string.tmdb_image_url) + movie.getPosterPath())
                 .placeholder(R.drawable.placeholder).into(holder.imgMoviePoster);
-
-        // TODO: Date formatting to Day, Date
-        holder.tvMovieReleased.setText(movie.getReleaseDate());
+        holder.tvMovieReleased.setText(parseDate(movie.getReleaseDate()));
     }
 
     @Override
@@ -73,5 +74,21 @@ public class FindMoviesAdapter extends RecyclerView.Adapter<FindMoviesAdapter.Fi
 
     public List<Movie> getMovieList() {
         return movieList;
+    }
+
+    public String parseDate(String time){
+        String inputPattern = "yyyy-MM-dd";
+        String outputPattern = "EEEE, MMM d, yyyy";
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+
+        try {
+            Date date = inputFormat.parse(time);
+            String str = outputFormat.format(date);
+            return str;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
