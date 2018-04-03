@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.anugrahrochmat.moviecatalogue.R;
+import io.github.anugrahrochmat.moviecatalogue.activity.MainActivity;
 import io.github.anugrahrochmat.moviecatalogue.adapter.FindMoviesAdapter;
 import io.github.anugrahrochmat.moviecatalogue.model.Movie;
 import io.github.anugrahrochmat.moviecatalogue.presenter.FindMoviesPresenter;
@@ -40,6 +42,8 @@ public class FindMoviesFragment extends Fragment implements FindMoviesView {
     @BindView(R.id.rv_find_movies_result)   RecyclerView rvFindMoviesResult;
     @BindView(R.id.progress_bar)            ProgressBar progressBar;
     @BindView(R.id.tv_error_message)        TextView tvErrorMessage;
+    @BindView(R.id.tool_bar)                Toolbar mToolbar;
+    @BindView(R.id.tv_toolbar_title)        TextView tvToolbarTitle;
 
     private FindMoviesPresenter presenter;
     private FindMoviesAdapter adapter;
@@ -64,8 +68,10 @@ public class FindMoviesFragment extends Fragment implements FindMoviesView {
         super.onActivityCreated(savedInstanceState);
         setRetainInstance(true);
 
-        presenter = new FindMoviesPresenter(this);
+        ((MainActivity) getActivity()).setSupportActionBar(mToolbar);
+//        getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
 
+        presenter = new FindMoviesPresenter(this);
         presenter.onStartView();
         presenter.initializeFindButton();
 
@@ -79,6 +85,8 @@ public class FindMoviesFragment extends Fragment implements FindMoviesView {
             }
         }
     }
+
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {

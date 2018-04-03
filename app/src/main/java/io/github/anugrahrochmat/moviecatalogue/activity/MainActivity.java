@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import io.github.anugrahrochmat.moviecatalogue.R;
 import io.github.anugrahrochmat.moviecatalogue.fragment.FindMoviesFragment;
+import io.github.anugrahrochmat.moviecatalogue.fragment.MovieDetailFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
                 FindMoviesFragment findMoviesFragment = new FindMoviesFragment();
+                MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
+
                 fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
                 fragmentTransaction.replace(R.id.frame_container, findMoviesFragment);
                 fragmentTransaction.commit();

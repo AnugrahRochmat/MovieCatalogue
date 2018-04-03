@@ -1,6 +1,9 @@
 package io.github.anugrahrochmat.moviecatalogue.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,14 +21,18 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.anugrahrochmat.moviecatalogue.R;
+import io.github.anugrahrochmat.moviecatalogue.activity.MainActivity;
+import io.github.anugrahrochmat.moviecatalogue.fragment.MovieDetailFragment;
 import io.github.anugrahrochmat.moviecatalogue.model.Movie;
 
 public class FindMoviesAdapter extends RecyclerView.Adapter<FindMoviesAdapter.FindMoviesViewHolder> {
 
+    private final String SEND_MOVIE_TO_DETAIL_FRAGMENT = "SEND_MOVIE_TO_DETAIL_FRAGMENT";
+
     private List<Movie> movieList;
     private Context context;
 
-    public class FindMoviesViewHolder extends RecyclerView.ViewHolder{
+    public class FindMoviesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.img_movie_poster)    ImageView imgMoviePoster;
         @BindView(R.id.tv_movie_title)      TextView tvMovieTitle;
         @BindView(R.id.tv_movie_desc)       TextView tvMovieDesc;
@@ -34,6 +41,23 @@ public class FindMoviesAdapter extends RecyclerView.Adapter<FindMoviesAdapter.Fi
         public FindMoviesViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Movie movie = movieList.get(getAdapterPosition());
+
+            MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(MovieDetailFragment.MOVIE_TO_DISPLAY_IN_DETAIL, movie);
+            movieDetailFragment.setArguments(bundle);
+
+            FragmentManager fm = ((MainActivity) context).getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.add(R.id.frame_container, movieDetailFragment);
+            ft.addToBackStack(null);
+            ft.commit();
         }
     }
 

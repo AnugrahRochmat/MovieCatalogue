@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">Movie Catalogue</string>
     <string name="find">Find</string>
-    <string name="find_movie">Movie Name</string>
+    <string name="find_movie">Search Movie</string>
     <string name="find_movie_empty">Insert the title of the movie you\'re looking for here.</string>
     <string name="error_no_connection">Can\'t connect to the internet. Please check your internet connection.</string>
     <string name="movie_released_date">Thursday, Mar 08, 2018</string>
-    <string name="movie_desc">Lara Croft, the fiercely independent daughter of a missing adventurer, must push herself beyond her limits when she finds herself on the island where her father disappeared.</string>
+    <string name="movie_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat convallis leo, ac condimentum est gravida at. Suspendisse potenti. Sed ut nisi eget turpis ornare tristique nec congue lacus. Fusce blandit urna id dui vestibulum, at dictum felis pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras vehicula venenatis eros. In lobortis auctor lorem, in suscipit mi posuere sed. Donec tempor lobortis imperdiet. Pellentesque convallis tincidunt porttitor. Vivamus ut ullamcorper leo. Vivamus hendrerit et sem quis blandit. Etiam odio augue, tincidunt eget orci eu, porta pretium mauris. Vestibulum ut nunc in leo interdum lobortis ut efficitur nunc. Nulla vehicula lorem ut ipsum efficitur, quis venenatis nulla euismod. Nunc vehicula cursus ex, vitae condimentum ante dapibus ac.</string>
     <string name="movie_name">Tomb Raider</string>
     <string name="tmdb_image_url">http://image.tmdb.org/t/p/w342/</string>
     <string name="can_not_find_movie">Sorry, we can\'t find the movie you\'re looking for. Please insert another movie title.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="synopsis">Synopsis</string>
 
 </resources>

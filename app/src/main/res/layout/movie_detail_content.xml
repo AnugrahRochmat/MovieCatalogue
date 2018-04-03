@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.MainActivity"
+    tools:showIn="@layout/fragment_movie_detail">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/margin_padding_16dp"
+        android:paddingRight="@dimen/margin_padding_16dp"
+        android:layout_marginTop="@dimen/margin_padding_16dp">
+
+        <!-- Start of 1st Row for poster and vote rated -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/margin_padding_8dp"
+            android:orientation="horizontal">
+
+            <!-- Left Column with image poster -->
+            <ImageView
+                android:id="@+id/img_detail_movie_poster"
+                android:layout_width="@dimen/width_poster_dimension"
+                android:layout_height="@dimen/height_poster_dimension"
+                android:scaleType="fitXY"/>
+
+            <!-- Column with Title, Vote and released date -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/margin_padding_8dp">
+                <TextView
+                    android:id="@+id/tv_detail_movie_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/margin_padding_8dp"
+                    android:paddingLeft="@dimen/margin_padding_4dp"
+                    android:textColor="@color/black"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/margin_padding_16dp">
+                    <ImageView
+                        android:layout_width="@dimen/star_dimension"
+                        android:layout_height="@dimen/star_dimension"
+                        android:src="@drawable/star" />
+                    <TextView
+                        android:id="@+id/tv_detail_vote_average"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:textAppearance="?android:attr/textAppearanceSmall"/>
+                    <TextView
+                        android:id="@+id/tv_detail_released_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/black"
+                        android:paddingLeft="@dimen/margin_padding_8dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <!-- End of 1st row-->
+
+        <!-- Start of 2nd row with Movie Synopsis-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/synopsis"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:paddingTop="@dimen/margin_padding_8dp"/>
+
+        <TextView
+            android:id="@+id/tv_detail_synopsis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_marginBottom="@dimen/margin_padding_8dp"
+            android:textColor="@color/black"
+            android:text="@string/movie_desc"
+            android:paddingBottom="@dimen/margin_padding_16dp"/>
+        <!-- End of 2nd row-->
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
