@@ -1,14 +1,13 @@
 package io.github.anugrahrochmat.moviecatalogue.activity;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import io.github.anugrahrochmat.moviecatalogue.R;
-import io.github.anugrahrochmat.moviecatalogue.fragment.FindMoviesFragment;
-import io.github.anugrahrochmat.moviecatalogue.fragment.MovieDetailFragment;
+import io.github.anugrahrochmat.moviecatalogue.fragment.TabsLayoutFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,11 +32,13 @@ public class MainActivity extends AppCompatActivity {
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                FindMoviesFragment findMoviesFragment = new FindMoviesFragment();
-                MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
+//                FindMoviesFragment findMoviesFragment = new FindMoviesFragment();
+//                MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
+//                MoviesTabsFragment moviesTabsFragment = MoviesTabsFragment.newInstance(SORT_BY_NOW_PLAYING);
+                TabsLayoutFragment tabsLayoutFragment = new TabsLayoutFragment();
 
                 fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
-                fragmentTransaction.replace(R.id.frame_container, findMoviesFragment);
+                fragmentTransaction.replace(R.id.frame_container, tabsLayoutFragment);
                 fragmentTransaction.commit();
             }
         };

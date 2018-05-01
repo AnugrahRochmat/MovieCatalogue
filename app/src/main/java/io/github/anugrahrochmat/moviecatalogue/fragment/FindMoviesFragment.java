@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.anugrahrochmat.moviecatalogue.R;
 import io.github.anugrahrochmat.moviecatalogue.activity.MainActivity;
-import io.github.anugrahrochmat.moviecatalogue.adapter.FindMoviesAdapter;
+import io.github.anugrahrochmat.moviecatalogue.adapter.MoviesListAdapter;
 import io.github.anugrahrochmat.moviecatalogue.model.Movie;
 import io.github.anugrahrochmat.moviecatalogue.presenter.FindMoviesPresenter;
 import io.github.anugrahrochmat.moviecatalogue.view.FindMoviesView;
@@ -46,7 +46,7 @@ public class FindMoviesFragment extends Fragment implements FindMoviesView {
     @BindView(R.id.tv_toolbar_title)        TextView tvToolbarTitle;
 
     private FindMoviesPresenter presenter;
-    private FindMoviesAdapter adapter;
+    private MoviesListAdapter adapter;
 
     public FindMoviesFragment() {
         // Required empty public constructor
@@ -61,7 +61,6 @@ public class FindMoviesFragment extends Fragment implements FindMoviesView {
 
         return view;
     }
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -108,7 +107,7 @@ public class FindMoviesFragment extends Fragment implements FindMoviesView {
         rvFindMoviesResult.setLayoutManager(layoutManager);
         rvFindMoviesResult.setHasFixedSize(true);
 
-        adapter = new FindMoviesAdapter(new ArrayList<Movie>(), getContext());
+        adapter = new MoviesListAdapter(new ArrayList<Movie>(), getContext());
         rvFindMoviesResult.setAdapter(adapter);
     }
 

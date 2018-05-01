@@ -72,24 +72,6 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
         presenter = new DetailMoviePresenter(this);
         presenter.onStartFragment(data);
 
-//        Bundle data = getArguments();
-//        if (data != null) {
-//
-//            Movie movie = data.getParcelable(MOVIE_TO_DISPLAY_IN_DETAIL);
-//
-//            (getActivity()).setTitle(movie.getOriginalTitle());
-//
-//            Picasso.with(getContext()).load(getContext().getResources().getString(R.string.tmdb_image_url) + movie.getBackdropPath())
-//                    .placeholder(R.drawable.placeholder).into(imgBackdrop);
-//            Picasso.with(getContext()).load(getContext().getResources().getString(R.string.tmdb_image_url) + movie.getPosterPath())
-//                    .placeholder(R.drawable.placeholder).into(imgPoster);
-//
-//            tvMovieTitle.setText(movie.getOriginalTitle());
-//            tvMovieVoted.setText(movie.getVoteAverage().toString() + " / 10 ");
-//            tvReleasedDate.setText(parseDate(movie.getReleaseDate()));
-//            tvMovieSynopsis.setText(movie.getOverview());
-//        }
-
     }
 
     @Override
@@ -128,5 +110,4 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
         }
         return null;
     }
-
 }

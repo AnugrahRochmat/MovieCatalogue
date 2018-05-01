@@ -25,7 +25,7 @@ import io.github.anugrahrochmat.moviecatalogue.activity.MainActivity;
 import io.github.anugrahrochmat.moviecatalogue.fragment.MovieDetailFragment;
 import io.github.anugrahrochmat.moviecatalogue.model.Movie;
 
-public class FindMoviesAdapter extends RecyclerView.Adapter<FindMoviesAdapter.FindMoviesViewHolder> {
+public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.FindMoviesViewHolder> {
 
     private final String SEND_MOVIE_TO_DETAIL_FRAGMENT = "SEND_MOVIE_TO_DETAIL_FRAGMENT";
 
@@ -61,7 +61,7 @@ public class FindMoviesAdapter extends RecyclerView.Adapter<FindMoviesAdapter.Fi
         }
     }
 
-    public FindMoviesAdapter(List<Movie> movieList, Context context) {
+    public MoviesListAdapter(List<Movie> movieList, Context context) {
         this.movieList = movieList;
         this.context = context;
     }

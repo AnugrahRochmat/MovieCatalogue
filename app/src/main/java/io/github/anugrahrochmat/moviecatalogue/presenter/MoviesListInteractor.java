@@ -8,43 +8,43 @@ import java.util.List;
 import io.github.anugrahrochmat.moviecatalogue.BuildConfig;
 import io.github.anugrahrochmat.moviecatalogue.activity.MainActivity;
 import io.github.anugrahrochmat.moviecatalogue.model.Movie;
-import io.github.anugrahrochmat.moviecatalogue.model.MoviesSearchResponse;
+import io.github.anugrahrochmat.moviecatalogue.model.MoviesListResponse;
 import io.github.anugrahrochmat.moviecatalogue.rest.ApiClient;
 import io.github.anugrahrochmat.moviecatalogue.rest.ApiInterface;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class FindMoviesInteractor extends AsyncTask<Void, Void, List<Movie>> {
+public class MoviesListInteractor extends AsyncTask<Void, Void, List<Movie>> {
 
     private static final String API_KEY = BuildConfig.API_KEY;
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private String query;
-    private FindMoviesPresenter findMoviesPresenter;
+    private String sortBy;
+    private MoviesListPresenter moviesListPresenter;
 
-    public FindMoviesInteractor(String query, FindMoviesPresenter findMoviesPresenter) {
-        this.query = query;
-        this.findMoviesPresenter = findMoviesPresenter;
+    public MoviesListInteractor(String sortBy, MoviesListPresenter moviesListPresenter) {
+        this.sortBy = sortBy;
+        this.moviesListPresenter = moviesListPresenter;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        findMoviesPresenter.onProcessStart();
+        moviesListPresenter.onProcessStart();
     }
 
     @Override
     protected List<Movie> doInBackground(Void... voids) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<MoviesSearchResponse> call = apiService.getFindMovies(API_KEY, query);
+        Call<MoviesListResponse> call = apiService.getMoviesList(sortBy, API_KEY);
 
         try {
-            Response<MoviesSearchResponse> response = call.execute();
+            Response<MoviesListResponse> response = call.execute();
             List<Movie> movies = response.body().getResults();
             return movies;
         } catch (Exception e){
             Log.e(TAG, "A problem occured ", e);
-            findMoviesPresenter.onErrorFetchMovie();
+            moviesListPresenter.onErrorFetchMovie();
         }
         return null;
     }
@@ -52,8 +52,6 @@ public class FindMoviesInteractor extends AsyncTask<Void, Void, List<Movie>> {
     @Override
     protected void onPostExecute(List<Movie> movies) {
         super.onPostExecute(movies);
-        findMoviesPresenter.loadMovies(movies);
+        moviesListPresenter.loadMovies(movies);
     }
-
-
 }
