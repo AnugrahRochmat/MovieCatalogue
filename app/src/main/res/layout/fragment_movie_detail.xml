@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/backdrop_image_height"
         android:theme="@style/AppTheme.AppBarOverlay"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="false">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"

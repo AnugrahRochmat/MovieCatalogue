@@ -28,6 +28,8 @@ import io.github.anugrahrochmat.moviecatalogue.view.MoviesTabsView;
  */
 public class MoviesTabsFragment extends Fragment implements MoviesTabsView {
 
+    private final String SAVED_MOVIES_LIST = "SAVED_MOVIES_LIST";
+
     @BindView(R.id.rv_movies_list)      RecyclerView rvMoviesList;
     @BindView(R.id.progress_bar)        ProgressBar progressBar;
     @BindView(R.id.tv_error_message)    TextView tvErrorMessage;
@@ -72,6 +74,21 @@ public class MoviesTabsFragment extends Fragment implements MoviesTabsView {
         presenter = new MoviesListPresenter(this);
         presenter.onStartView(sortBy);
 
+        if (savedInstanceState != null){
+            if (savedInstanceState.containsKey(SAVED_MOVIES_LIST)) {
+                List<Movie> movieList = savedInstanceState.getParcelableArrayList(SAVED_MOVIES_LIST);
+                presenter.loadMovies(movieList);
+            }
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        ArrayList<Movie> moviesSaved = new ArrayList<>(adapter.getMovieList());
+        if (moviesSaved != null) {
+            outState.putParcelableArrayList(SAVED_MOVIES_LIST, moviesSaved);
+        }
     }
 
     @Override

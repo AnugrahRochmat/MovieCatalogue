@@ -26,6 +26,10 @@ public class TabsLayoutFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static TabsLayoutFragment newInstance(){
+        TabsLayoutFragment tabsLayoutFragment = new TabsLayoutFragment();
+        return tabsLayoutFragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +40,7 @@ public class TabsLayoutFragment extends Fragment {
 
 
         // Create an adapter that knows which fragment should be shown on each page
-        TabsViewPagerAdapter adapter = new TabsViewPagerAdapter(view.getContext(), getFragmentManager());
+        TabsViewPagerAdapter adapter = new TabsViewPagerAdapter(view.getContext(), getChildFragmentManager());
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);

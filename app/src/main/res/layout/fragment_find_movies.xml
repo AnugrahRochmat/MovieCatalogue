@@ -9,9 +9,9 @@
         android:layout_height="match_parent">
 
         <!-- ToolBar Layout-->
-        <include
-            android:id="@+id/tool_bar"
-            layout="@layout/tool_bar" />
+        <!--<include-->
+            <!--android:id="@+id/tool_bar"-->
+            <!--layout="@layout/tool_bar" />-->
 
         <!-- Search Movie Row-->
         <LinearLayout
@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@id/tool_bar"
             android:paddingTop="@dimen/margin_padding_16dp"
             android:paddingLeft="@dimen/margin_padding_16dp"
             android:paddingRight="@dimen/margin_padding_16dp"

@@ -20,8 +20,8 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.anugrahrochmat.moviecatalogue.R;
-import io.github.anugrahrochmat.moviecatalogue.activity.MainActivity;
 import io.github.anugrahrochmat.moviecatalogue.model.Movie;
+import io.github.anugrahrochmat.moviecatalogue.other.DrawerLocker;
 import io.github.anugrahrochmat.moviecatalogue.presenter.DetailMoviePresenter;
 import io.github.anugrahrochmat.moviecatalogue.view.DetailMovieView;
 
@@ -32,7 +32,8 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
 
     public static String MOVIE_TO_DISPLAY_IN_DETAIL = "MOVIE_TO_DISPLAY_IN_DETAIL";
 
-    @BindView(R.id.toolbar)                Toolbar mToolbar;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     @BindView(R.id.img_backdrop)            ImageView imgBackdrop;
     @BindView(R.id.img_detail_movie_poster) ImageView imgPoster;
     @BindView(R.id.tv_detail_movie_title)   TextView tvMovieTitle;
@@ -54,8 +55,16 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_movie_detail, container, false);
         ButterKnife.bind(this, view);
+        ((DrawerLocker) getActivity()).lockDrawer();
+        setHasOptionsMenu(true);
 
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ((DrawerLocker) getActivity()).unlockDrawer();
     }
 
     @Override
@@ -63,8 +72,9 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
         super.onActivityCreated(savedInstanceState);
         setRetainInstance(true);
 
-        ((MainActivity) getActivity()).setSupportActionBar(mToolbar);
-//        ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
+//        ((MainActivity) getActivity()).getSupportActionBar().hide();
+//        ((MainActivity) getActivity()).setSupportActionBar(mToolbar);
+//        ActionBar actionBar = ((MainActivity) getActivity()).get;
 //        if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
         mToolbar.setNavigationOnClickListener(this);
 
@@ -77,7 +87,8 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public void displayDetailMovie(Bundle data) {
         movie = data.getParcelable(MOVIE_TO_DISPLAY_IN_DETAIL);
-        (getActivity()).setTitle(movie.getOriginalTitle());
+//        (getActivity()).setTitle(movie.getOriginalTitle());
+        mToolbar.setTitle(movie.getOriginalTitle());
 
         Picasso.with(getContext()).load(getContext().getResources().getString(R.string.tmdb_image_url) + movie.getBackdropPath())
                 .placeholder(R.drawable.placeholder).into(imgBackdrop);
@@ -110,4 +121,5 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
         }
         return null;
     }
+
 }
