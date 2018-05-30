@@ -26,6 +26,8 @@
     <string name="about_text">Hi, Welcome to Movie Catalogue.</string>
     <string name="setting">Settings</string>
     <string name="language_setting">Language</string>
+    <string name="share_movie">Share Movie</string>
+    <string name="add_favourite">Add Favourite</string>
 
 
     <string-array name="language_option">

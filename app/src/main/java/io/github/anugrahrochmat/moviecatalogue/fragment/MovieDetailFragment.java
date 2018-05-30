@@ -1,11 +1,13 @@
 package io.github.anugrahrochmat.moviecatalogue.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -28,12 +30,12 @@ import io.github.anugrahrochmat.moviecatalogue.view.DetailMovieView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieDetailFragment extends Fragment implements View.OnClickListener, DetailMovieView {
+public class MovieDetailFragment extends Fragment implements View.OnClickListener, DetailMovieView, Toolbar.OnMenuItemClickListener {
 
     public static String MOVIE_TO_DISPLAY_IN_DETAIL = "MOVIE_TO_DISPLAY_IN_DETAIL";
+    public static final String TMDB_URL = "https://www.themoviedb.org/movie/";
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+    @BindView(R.id.toolbar)                 Toolbar mToolbar;
     @BindView(R.id.img_backdrop)            ImageView imgBackdrop;
     @BindView(R.id.img_detail_movie_poster) ImageView imgPoster;
     @BindView(R.id.tv_detail_movie_title)   TextView tvMovieTitle;
@@ -77,11 +79,32 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
 //        ActionBar actionBar = ((MainActivity) getActivity()).get;
 //        if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
         mToolbar.setNavigationOnClickListener(this);
+        mToolbar.inflateMenu(R.menu.share_fav_menu);
+        mToolbar.setOnMenuItemClickListener(this);
 
         data = getArguments();
         presenter = new DetailMoviePresenter(this);
         presenter.onStartFragment(data);
+    }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.share_button:
+                // Share
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                shareIntent.setType("text/plain");
+                String shareText = "Check out " + movie.getOriginalTitle() + " on TMDb\n" + TMDB_URL + movie.getId();
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+                startActivity(Intent.createChooser(shareIntent, "Share This With..."));
+                break;
+            case R.id.favourite_button:
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

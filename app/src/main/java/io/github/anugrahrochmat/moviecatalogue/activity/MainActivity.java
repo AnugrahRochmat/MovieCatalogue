@@ -54,8 +54,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (savedInstanceState == null) {
             loadFragment();
         }
-    }
 
+        /**
+         * Stetho
+         */
+//        Stetho.initializeWithDefaults(this);
+//        Stetho.InitializerBuilder initializerBuilder = Stetho.newInitializerBuilder(this);
+//        initializerBuilder.enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this));
+//        Stetho.initialize(initializerBuilder.build());
+    }
 
 
     public void loadFragment(){
@@ -152,13 +159,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
         toolbar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-
     }
 }
 
