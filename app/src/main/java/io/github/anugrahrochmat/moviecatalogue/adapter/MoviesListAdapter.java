@@ -1,6 +1,7 @@
 package io.github.anugrahrochmat.moviecatalogue.adapter;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -55,7 +56,7 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Fi
 
             FragmentManager fm = ((MainActivity) context).getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            ft.add(R.id.frame_container, movieDetailFragment);
+            ft.replace(R.id.frame_container, movieDetailFragment);
             ft.addToBackStack(null);
             ft.commit();
         }
@@ -114,5 +115,27 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Fi
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * add method to add cursor into adapter
+     * @param cursor
+     */
+    public void add(Cursor cursor) {
+        movieList.clear();
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String title =  cursor.getString(1);
+                String overview = cursor.getString(2);
+                String backdrop = cursor.getString(3);
+                String poster = cursor.getString(4);
+                String release_date = cursor.getString(5);
+                Double vote_average = Double.parseDouble(cursor.getString(6));
+                Movie movie = new Movie(backdrop, id, title, overview, poster, release_date, title, vote_average);
+                movieList.add(movie);
+            } while (cursor.moveToNext());
+        }
+        notifyDataSetChanged();
     }
 }

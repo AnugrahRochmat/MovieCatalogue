@@ -9,6 +9,7 @@
     <string name="movie_name">Tomb Raider</string>
     <string name="tmdb_image_url">http://image.tmdb.org/t/p/w342/</string>
     <string name="can_not_find_movie">Sorry, we can\'t find the movie you\'re looking for. Please insert another movie title.</string>
+    <string name="empty_favourites">You haven\'t saved your favourites movies.</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="synopsis">Synopsis</string>
@@ -28,6 +29,7 @@
     <string name="language_setting">Language</string>
     <string name="share_movie">Share Movie</string>
     <string name="add_favourite">Add Favourite</string>
+    <string name="nav_favourites">Favourites</string>
 
 
     <string-array name="language_option">

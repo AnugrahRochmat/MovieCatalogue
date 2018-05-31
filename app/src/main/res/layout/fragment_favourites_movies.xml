@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.FavouritesMoviesFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_padding_8dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_movies_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/btn_find_movies_dimension"
+            android:layout_height="@dimen/btn_find_movies_dimension"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tv_error_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/text_size_16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            android:textAlignment="center"
+            android:text="@string/error_no_connection"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+</FrameLayout>

@@ -20,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.anugrahrochmat.moviecatalogue.R;
 import io.github.anugrahrochmat.moviecatalogue.fragment.AboutFragment;
+import io.github.anugrahrochmat.moviecatalogue.fragment.FavouritesMoviesFragment;
 import io.github.anugrahrochmat.moviecatalogue.fragment.FindMoviesFragment;
 import io.github.anugrahrochmat.moviecatalogue.fragment.TabsLayoutFragment;
 import io.github.anugrahrochmat.moviecatalogue.other.DrawerLocker;
@@ -115,6 +116,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_discover) {
             fragmentClass = FindMoviesFragment.class;
             toolbar.setTitle(R.string.nav_discover);
+        } else if (id == R.id.nav_favourites) {
+            fragmentClass = FavouritesMoviesFragment.class;
+            toolbar.setTitle(R.string.nav_favourites);
         } else if (id == R.id.nav_about) {
             fragmentClass = AboutFragment.class;
             toolbar.setTitle(R.string.nav_about_us);

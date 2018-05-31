@@ -38,16 +38,17 @@ public class Movie implements Parcelable{
     /**
      * Movie class constructor
      */
-    public Movie(){
-//        this.backdropPath = backdropPath;
-//        this.id = id;
-//        this.originalTitle = originalTitle;
-//        this.overview = overview;
-//        this.popularity = popularity;
-//        this.posterPath = posterPath;
-//        this.releaseDate = releaseDate;
-//        this.title = title;
-//        this.voteAverage = voteAverage;
+    public Movie(String backdropPath, Integer id, String originalTitle, String overview,
+                 String posterPath, String releaseDate, String title, Double voteAverage){
+        this.backdropPath = backdropPath;
+        this.id = id;
+        this.originalTitle = originalTitle;
+        this.overview = overview;
+        //this.popularity = popularity;
+        this.posterPath = posterPath;
+        this.releaseDate = releaseDate;
+        this.title = title;
+        this.voteAverage = voteAverage;
     }
 
     /**

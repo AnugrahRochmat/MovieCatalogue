@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.anugrahrochmat.moviecatalogue.R;
+import io.github.anugrahrochmat.moviecatalogue.activity.MainActivity;
 import io.github.anugrahrochmat.moviecatalogue.model.Movie;
 import io.github.anugrahrochmat.moviecatalogue.other.DrawerLocker;
 import io.github.anugrahrochmat.moviecatalogue.presenter.DetailMoviePresenter;
@@ -30,7 +33,7 @@ import io.github.anugrahrochmat.moviecatalogue.view.DetailMovieView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieDetailFragment extends Fragment implements View.OnClickListener, DetailMovieView, Toolbar.OnMenuItemClickListener {
+public class MovieDetailFragment extends Fragment implements View.OnClickListener, DetailMovieView {
 
     public static String MOVIE_TO_DISPLAY_IN_DETAIL = "MOVIE_TO_DISPLAY_IN_DETAIL";
     public static final String TMDB_URL = "https://www.themoviedb.org/movie/";
@@ -46,6 +49,7 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
     private DetailMoviePresenter presenter;
     private Bundle data;
     private Movie movie;
+    private MenuItem favMenuItem;
 
     public MovieDetailFragment() {
         // Required empty public constructor
@@ -72,15 +76,11 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);
         setRetainInstance(true);
 
-//        ((MainActivity) getActivity()).getSupportActionBar().hide();
-//        ((MainActivity) getActivity()).setSupportActionBar(mToolbar);
-//        ActionBar actionBar = ((MainActivity) getActivity()).get;
-//        if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+        ((MainActivity) getActivity()).setSupportActionBar(mToolbar);
         mToolbar.setNavigationOnClickListener(this);
-        mToolbar.inflateMenu(R.menu.share_fav_menu);
-        mToolbar.setOnMenuItemClickListener(this);
 
         data = getArguments();
         presenter = new DetailMoviePresenter(this);
@@ -88,7 +88,15 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
     }
 
     @Override
-    public boolean onMenuItemClick(MenuItem item) {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.share_fav_menu, menu);
+        favMenuItem = menu.findItem(R.id.favourite_button);
+        presenter.onInitFav(movie);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.share_button:
                 // Share
@@ -100,6 +108,7 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
                 startActivity(Intent.createChooser(shareIntent, "Share This With..."));
                 break;
             case R.id.favourite_button:
+                presenter.updateFavourites(movie);
                 break;
             default:
                 break;
@@ -110,7 +119,6 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public void displayDetailMovie(Bundle data) {
         movie = data.getParcelable(MOVIE_TO_DISPLAY_IN_DETAIL);
-//        (getActivity()).setTitle(movie.getOriginalTitle());
         mToolbar.setTitle(movie.getOriginalTitle());
 
         Picasso.with(getContext()).load(getContext().getResources().getString(R.string.tmdb_image_url) + movie.getBackdropPath())
@@ -143,6 +151,16 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void onFavouriteTrue() {
+        favMenuItem.setIcon(R.drawable.ic_fav);
+    }
+
+    @Override
+    public void onFavouriteFalse() {
+        favMenuItem.setIcon(R.drawable.ic_fav_border);
     }
 
 }
