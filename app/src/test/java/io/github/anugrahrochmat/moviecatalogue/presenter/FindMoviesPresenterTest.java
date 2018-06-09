@@ -10,9 +10,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import io.github.anugrahrochmat.moviecatalogue.model.Movie;
+import io.github.anugrahrochmat.moviecatalogue.data.models.movie.Movie;
 import io.github.anugrahrochmat.moviecatalogue.repositories.MoviesRepository;
-import io.github.anugrahrochmat.moviecatalogue.view.FindMoviesView;
+import io.github.anugrahrochmat.moviecatalogue.ui.findmovies.FindMoviesPresenter;
+import io.github.anugrahrochmat.moviecatalogue.ui.findmovies.FindMoviesView;
 
 public class FindMoviesPresenterTest {
 
